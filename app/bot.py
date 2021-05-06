@@ -3,7 +3,7 @@ from state_machine import StateMachine
 from telebot import TeleBot
 
 
-bot = TeleBot(TOKEN)
+bot = TeleBot(TOKEN, threaded=False)
 storage = dict()
 
 
@@ -82,4 +82,3 @@ if __name__ == "__main__":
         except Exception as e:
             print(e)
             time.sleep(15)
-    
