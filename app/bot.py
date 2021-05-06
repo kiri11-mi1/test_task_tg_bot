@@ -77,7 +77,7 @@ def default_answer(message):
     bot.send_message(message.chat.id, 'Сделайте заказ с помощью команды /start.')
 
 
-@app.route('/tg_bot')
+@app.route('/tg_bot', methods=['POST'])
 def get_update():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return
