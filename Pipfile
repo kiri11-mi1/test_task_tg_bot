@@ -9,6 +9,7 @@ transitions = "*"
 pip = "*"
 install = "*"
 pytelegrambotapi = "*"
+vedis = "*"
 
 [dev-packages]
 
