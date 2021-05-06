@@ -6,8 +6,9 @@ name = "pypi"
 [packages]
 requests = "*"
 transitions = "*"
-flask = "*"
-flask-sslify = "*"
+pip = "*"
+install = "*"
+pytelegrambotapi = "*"
 
 [dev-packages]
 
