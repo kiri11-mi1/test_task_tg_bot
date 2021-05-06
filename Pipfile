@@ -10,6 +10,8 @@ pip = "*"
 install = "*"
 pytelegrambotapi = "*"
 vedis = "*"
+flask = "*"
+gunicorn = "*"
 
 [dev-packages]
 
