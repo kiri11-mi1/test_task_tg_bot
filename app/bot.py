@@ -78,7 +78,7 @@ def default_answer(message):
 if __name__ == "__main__":
     while True:
         try:
-            bot.polling()
+            bot.polling(none_stop=True)
         except Exception as e:
             print(e)
             time.sleep(15)
