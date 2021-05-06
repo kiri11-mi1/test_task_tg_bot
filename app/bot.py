@@ -1,11 +1,12 @@
 from config import TOKEN
 from state_machine import StateMachine
 from telebot import TeleBot
-import time
+from flask import Flask, request
 
 
 bot = TeleBot(TOKEN, threaded=False)
 storage = dict()
+app = Flask(__name__)
 
 
 def get_or_create_state(chat_id):
@@ -76,10 +77,18 @@ def default_answer(message):
     bot.send_message(message.chat.id, 'Сделайте заказ с помощью команды /start.')
 
 
+@app.route('/tg_bot')
+def get_update():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return
+
+
+@app.route('/')
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://test-task-tg-bot.herokuapp.com/tg_bot')
+    return
+
+
 if __name__ == "__main__":
-    while True:
-        try:
-            bot.polling(none_stop=True)
-        except Exception as e:
-            print(e)
-            time.sleep(15)
+    app.run()
