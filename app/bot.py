@@ -80,14 +80,14 @@ def default_answer(message):
 @app.route('/tg_bot', methods=['POST'])
 def get_update():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return
+    return "!", 2000
 
 
 @app.route('/')
 def webhook():
     bot.remove_webhook()
     bot.set_webhook(url='https://test-task-tg-bot.herokuapp.com/tg_bot')
-    return
+    return "Webhook setted", 200
 
 
 if __name__ == "__main__":
