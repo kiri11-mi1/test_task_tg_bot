@@ -1,5 +1,5 @@
-from app.config import TOKEN
-from app.state_machine import StateMachine
+from config import TOKEN
+from state_machine import StateMachine
 from telebot import TeleBot
 
 
@@ -13,7 +13,7 @@ selected = {
 }
 
 
-@bot.message_handler(commands=["start"], func=lambda _: sm.state == 'start_state')
+@bot.message_handler(commands=["start"], func=lambda m: sm.state == 'start_state')
 def cmd_start(message):
     bot.send_message(
         message.chat.id,
@@ -22,7 +22,13 @@ def cmd_start(message):
     sm.start_dialog()
 
 
-@bot.message_handler(func=lambda _: sm.state=='food_size')
+@bot.message_handler(commands=["reset"])
+def cmd_cancel(message): 
+    sm.cancel()
+    bot.send_message(message.chat.id, 'Начните заказ по новой с команды /start.')
+
+
+@bot.message_handler(func=lambda m: sm.state=='food_size')
 def food_size(message):
     if message.text.lower() in ['большую', 'маленькую']:
         selected['size'] = message.text.lower()
@@ -34,7 +40,7 @@ def food_size(message):
     bot.send_message(message.chat.id, 'Введите размер: большую или маленькую.')
 
 
-@bot.message_handler(func=lambda _: sm.state=='payment_form')
+@bot.message_handler(func=lambda m: sm.state=='payment_form')
 def payment_form(message):
     if message.text.lower() in ['наличкой', 'безналичкой']:
         selected['payment'] = message.text.lower()
@@ -46,7 +52,7 @@ def payment_form(message):
     bot.send_message(message.chat.id, 'Введите способ оплаты: наличкой или безналичкой.')
 
 
-@bot.message_handler(func=lambda _: sm.state=='checking')
+@bot.message_handler(func=lambda m: sm.state=='checking')
 def fix_order(message):
     if message.text.lower() == 'да':
         sm.fix_order()
@@ -56,13 +62,7 @@ def fix_order(message):
     bot.send_message(message.chat.id, 'Ответьте: Да или Нет.')
 
 
-@bot.message_handler(commands=["reset"])
-def cmd_cancel(message): 
-    sm.cancel()
-    bot.send_message(message.chat.id, 'Начните заказ по новой с команды /start.')
-
-
-@bot.message_handler(func=lambda _: sm.state == 'start_state')
+@bot.message_handler(func=lambda m: sm.state == 'start_state')
 def default_answer(message):
     bot.send_message(message.chat.id, 'Сделайте заказ с помощью команды /start.')
 
