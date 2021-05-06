@@ -1,6 +1,7 @@
 from config import TOKEN
 from state_machine import StateMachine
 from telebot import TeleBot
+import time
 
 
 bot = TeleBot(TOKEN, threaded=False)
