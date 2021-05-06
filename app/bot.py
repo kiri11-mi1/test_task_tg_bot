@@ -76,4 +76,10 @@ def default_answer(message):
 
 
 if __name__ == "__main__":
-    bot.infinity_polling()
+    while True:
+        try:
+            bot.polling()
+        except Exception as e:
+            print(e)
+            time.sleep(15)
+    
