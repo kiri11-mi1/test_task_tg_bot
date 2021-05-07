@@ -7,7 +7,7 @@ bot = TeleBot(TOKEN)
 
 
 @bot.message_handler()
-def cmd_start(message):
+def answer(message):
     bot.send_message(
         message.chat.id,
         get_response(message.chat.id, message.text.lower())
