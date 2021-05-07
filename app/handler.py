@@ -2,6 +2,8 @@ from state_machine import StateMachine
 
 
 class Handler:
+
+
     def __init__(self):
         self.storage = {}
 
