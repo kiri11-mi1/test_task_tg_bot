@@ -1,16 +1,17 @@
 from config import TOKEN
 from telebot import TeleBot
-from handler import get_response
+from handler import Handler
 
 
 bot = TeleBot(TOKEN)
+handler = Handler()
 
 
 @bot.message_handler()
 def answer(message):
     bot.send_message(
         message.chat.id,
-        get_response(message.chat.id, message.text.lower())
+        handler.get_response(message.chat.id, message.text.lower())
     )
 
 
