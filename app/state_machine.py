@@ -11,5 +11,3 @@ class StateMachine(object):
         self.machine = Machine(model=self, states=StateMachine.states, initial=initial_state)
         self.machine.add_ordered_transitions(self.states)
         self.machine.add_transition(trigger='cancel', source='*', dest='start_state')
-
-        
