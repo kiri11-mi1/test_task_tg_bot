@@ -11,7 +11,7 @@ handler = Handler()
 def answer(message):
     bot.send_message(
         message.chat.id,
-        handler.get_response(message.chat.id, message.text.lower())
+        handler.get_response(message.chat.id, message.text)
     )
 
 
