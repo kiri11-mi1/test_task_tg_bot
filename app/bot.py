@@ -89,7 +89,7 @@ def get_update():
     return "!", 2000
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def webhook():
     bot.remove_webhook()
     bot.set_webhook(url='https://test-task-tg-bot.herokuapp.com/bot')
