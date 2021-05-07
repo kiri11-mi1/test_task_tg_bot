@@ -1,5 +1,5 @@
-from app.config import TOKEN
-from app.state_machine import StateMachine
+from config import TOKEN
+from state_machine import StateMachine
 from telebot import TeleBot
 
 
@@ -75,3 +75,7 @@ def fix_order(message):
 @bot.message_handler(func=lambda msg: get_or_create_state(msg.chat.id) == 'start_state')
 def default_answer(message):
     bot.send_message(message.chat.id, 'Сделайте заказ с помощью команды /start.')
+
+
+if __name__ == '__main__':
+    bot.polling(none_stop=True)
