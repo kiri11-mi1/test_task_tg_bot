@@ -54,5 +54,3 @@ def get_response(chat_id, text):
             return 'Ответьте: Да или Нет.'
 
     return 'Сделайте заказ с помощью команды /start.'
-
-
