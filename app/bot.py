@@ -1,5 +1,5 @@
-from config import TOKEN
-from state_machine import StateMachine
+from app.config import TOKEN
+from app.state_machine import StateMachine
 from telebot import TeleBot
 import telebot
 from flask import Flask, request
