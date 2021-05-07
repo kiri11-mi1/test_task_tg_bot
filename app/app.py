@@ -19,7 +19,7 @@ def get_update():
 @app.route('/', methods=['GET'])
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://test-task-tg-bot.herokuapp.com/bot')
+    bot.set_webhook(url='https://test-task-tg-bot.herokuapp.com/bot/')
     return "Webhook setted", 200
 
 
