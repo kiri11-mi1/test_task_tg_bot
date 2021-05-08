@@ -73,7 +73,7 @@ class TestHandler(unittest.TestCase):
         self.storage[self.chat_id]['state'] = StateMachine('checking')
         self.assertEqual(
             self.handler.get_response(self.chat_id, 'да'),
-            'Спасибо за заказ!'
+            'Спасибо за заказ.'
         )
 
 

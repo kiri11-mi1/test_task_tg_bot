@@ -51,7 +51,7 @@ class Handler:
         elif self.get_or_create_state(chat_id) == 'checking':
             if text == 'да':
                 self.storage[chat_id]['state'].next_state()
-                return 'Спасибо за заказ!'
+                return 'Спасибо за заказ.'
             elif text == 'нет':
                 self.storage[chat_id]['state'].cancel()
                 return 'Начните заказ по новой с команды /start.'
